@@ -52,9 +52,9 @@
 (defn split-n-cap [word-with-dashes]
   "capitalizes all the bits within a dashed word"
   (clojure.string/join "-"
-                       (map 
-                         (fn [x] (clojure.string/capitalize x)) 
-                         (clojure.string/split word-with-dashes #"[-]"))))
+    (map 
+      (fn [x] (clojure.string/capitalize x)) 
+      (clojure.string/split word-with-dashes #"[-]"))))
 
 (defn starts-w-container? [word]
   (if 
