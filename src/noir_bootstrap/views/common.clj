@@ -8,7 +8,8 @@
                [:title "Titlecase.org"]
                (include-css "/css/bootstrap.css")
                (include-css "/css/bootstrap-responsive.css")
-               [:style "body { padding-top: 60px; }"]]
+               [:style "body { padding-top: 60px; }"]
+               [:meta {:name "viewpoint" :content "width=device-width" :initial-scale "1" :maximum-scale "1"}]]
               [:body
                (list
                 [:div.navbar.navbar-fixed-top {"data-toggle" "collapse" "data-target" ".nav-collapse"}
