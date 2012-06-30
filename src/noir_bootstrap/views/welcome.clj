@@ -174,4 +174,4 @@
 
 (defpage "/assumptions" []
   (common/layout
-    [:p "All user entered capitalization is correct (e.g. The Doors will not be corrected to the Doors)"]))
+    [:p "All user entered capitalization is correct (e.g. The Doors will not be corrected to the Doors and iPhone will not be corrected to Iphone)"]))
