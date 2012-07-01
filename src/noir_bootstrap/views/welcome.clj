@@ -135,11 +135,11 @@
       [:br]
       [:button.btn-primary {:type "submit"} "Convert to Titlecase"])))
 
-(defn valid? [{:keys [firstname lastname]}]
+(defn valid? [title]
   true)
 
 (defpage [:post "/"] {:as title}
- (if (valid? title)
+ (if (not (empty? (title :heading)))
     (common/layout
       [:div.well
         [:h3
