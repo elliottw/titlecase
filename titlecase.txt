@@ -1,0 +1,111 @@
+## tagline
+everything you need to know about everything between uppercase and sentence case.
+
+## Assumptions
+camelcase is right
+spacing is right
+
+## links
+gruber http://daringfireball.net/2008/05/title_case
+better than gruber http://individed.com/code/to-title-case/tests.html 
+duckduckgo api
+
+split into list of words
+
+## Chicago Style
+capitolize all words
+lowercase articles the, a, and an
+lowercase prepositions
+capitolize prepositions when used adverbially or adjectivally
+lowercase conjunctions and, but, for, or, and nor
+lowercase to also as an infinite (basically to is always lowercae)
+lowercase part of proper name that would always be lowercased (de or von)
+lowercase second part of species name Acipenser fulvescens
+
+## APA
+assumes proper spacing (word: next word not word:next word)
+capitolize all words (capitolize first letter in each wordish)
+lowercase all conjunctions, articles, prepositions under 4 letters (lowercase all wordishes that match list)
+capitolize all words after : or - (capitolize first letter within wordish after -)
+lowercase all with dots within
+
+check duckduckgo to see if i got anything wrong
+
+### lowercase list
+a
+an
+and
+as
+at
+but
+by
+en
+for
+if
+in
+of
+on
+or
+the
+to
+v
+v.
+vs
+vs.
+via
+## test cases
+Scott Moritz And Thestreet.com’s Million Iphone La‑la Land
+
+
+## code
+>	(clojure.string/split "'By the Way, Small Word at the Start but Within Quotes.'" #"\s")
+	["'By" "the" "Way," "Small" "Word" "at" "the" "Start" "but" "Within" "Quotes.'"]
+
+## irc
+https://gist.github.com/3006297
+[15:34:13] kaoD: sorry mate, I'm watching soccert
+[15:34:14] kaoD: *soccer
+[15:34:31] elliottw: lol
+[15:34:34] elliottw: no worries
+[15:44:52] kaoD: https://gist.github.com/3006297
+[15:45:45] elliottw: i'm sorry, can you explain this to me a bti?
+[15:46:05] elliottw: this seems a bit over my head
+[15:47:17] kaoD: sure
+[15:47:23] kaoD: "cool?" is just a dummy function
+[15:47:25] kaoD: it returns true
+[15:47:34] kaoD: (it's there just to show what you can do later)
+[15:47:52] kaoD: then handlers is a collection of pairs of predicate-action
+[15:47:56] kaoD: [predicate action]
+[15:48:09] kaoD: handlers = [ [predicate action], [predicate action], [predicate action] ]
+[15:48:27] elliottw: ahh
+[15:48:31] kaoD: chain just loops over it in order
+[15:48:43] kaoD: and if (predicate tags) = true
+[15:48:43] elliottw: so if the word is small and first do something, if the word is cool do something else
+[15:48:47] kaoD: it returns (action word)
+
+[15:49:09] kaoD: notice predicate works with tags while action works with words
+[15:49:21] kaoD: then you just pass to chain the list of handlers
+[15:49:24] kaoD: and a list of words
+[15:49:41] kaoD: [ ["word1" {tags for word1}] ["word" {tags 2}] ]
+[15:49:46] kaoD: nope
+[15:49:48] kaoD: a single word
+[15:49:56] kaoD: ["word" {tags for wor1}]
+[15:50:09] kaoD: then you can map this chain function to a list of words
+[15:50:13] kaoD: [ ["word1" {tags for word1}] ["word" {tags 2}] ]
+[15:50:48] kaoD: notice that, even though cool? is always returning true
+[15:51:02] kaoD: as soon as the first function returns true and does toUpperCase
+[15:51:08] kaoD: the next handler is not called
+[15:51:20] kaoD: henche why the output is "HELLO"
+[15:51:46] kaoD: it's like a cond on steroids
+[15:52:06] elliottw: so i could create any number of handlers for any variation of tags?
+[15:52:14] kaoD: yes
+[15:52:26] kaoD: and you would just pass the handlers you needed for chain
+[15:52:45] elliottw: from this i'd still need to create tests that add tags to words and put it into a map, correct?
+[15:52:56] kaoD: yep
+[15:53:07] kaoD: but you separated analysis from action
+[15:53:18] kaoD: which is a good idea (you can change your analysis without messing with actions)
+[15:53:19] elliottw: yeah, i thought that was a good idea. is it?
+[15:53:24] kaoD: (and viceversa)
+[15:53:32] elliottw: k
+[15:53:57] kaoD: now I'm going to watch some more soccer, cya!
+[15:54:15] elliottw: thanks. i'll probably spend a day trying to grasp all this fully. thanks again.
